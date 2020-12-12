@@ -35,17 +35,17 @@ def generate_query(cursor, org=None):
     Construct a Github GraphQL API query
     """
     if org:
-    
         return gql(f'''
             {{
                 viewer {{
-                    organization(login: {org}) {{
+                    organization(login: "{org}" ) {{
                         {generate_repo_query(cursor)}
                     }}
                 }}
             }}
             '''
         )
+
     else:
         return gql(f'''
         {{
@@ -131,6 +131,8 @@ def main():
         query = generate_query(current_cursor, args.org_name)
         # Execute the query on the transport
         result_json = client.execute(query)
+        print(query.definitions)
+        print(result_json)
         repos, current_cursor= parse_results(result_json, args.org_name)
         repo_list.extend(repos)
         if len(repos) < 100:
