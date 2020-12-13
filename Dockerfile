@@ -1,6 +1,6 @@
 FROM python:3.8.6-slim
 
-RUN pip install --pre gql[all] --no-cache
+RUN pip install PyGithub==1.54 --no-cache
 
 COPY . /src
 
