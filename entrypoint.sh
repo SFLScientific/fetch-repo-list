@@ -10,5 +10,5 @@ then
     echo "The orgnization name is $3."
 fi
 
-python /src/main.py --token $1 --last_active $2 --org_name $3
+python /src/main.py --token $1 --last_active $2 --org_name $3 --ignore $4
 echo "::set-output name=repo_list::$(cat repos.txt)"

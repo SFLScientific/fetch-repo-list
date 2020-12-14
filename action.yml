@@ -14,6 +14,10 @@ inputs:
     description: 'Name of the organization'
     required: false
     default: "None"
+  ignore_repos:
+    description: 'A list of repos to ignore'
+    required: false
+    default: "None"
 outputs:
   repos:
     description: 'A list of repo names'
@@ -24,3 +28,4 @@ runs:
     - ${{ inputs.token }}
     - ${{ inputs.last_active }}
     - ${{ inputs.org_name }}
+    - ${{ inputs.ignore_repos }}

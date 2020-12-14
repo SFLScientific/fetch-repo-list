@@ -17,6 +17,7 @@ def main():
     parser.add_argument('--last_active', type=int, default=None)
     parser.add_argument('--org_name', type=str, default=None)
     parser.add_argument('--token', type=str, required=True)
+    parser.add_argument('--ignore', type=str, required=False, default=None)
     args = parser.parse_args()
 
     g = Github(args.token)
@@ -30,6 +31,9 @@ def main():
         repos = filter(repo_filter, repos)
     
     repo_names =  [x.full_name for x in repos]
+    
+    if args.ignore:
+        repo_names = list(set(repo_names).difference(set(eval(args.ignore))))
 
     with open("repos.txt", "w") as f:
         f.write(f'{{\\"repo\\":{repo_names}}}')
