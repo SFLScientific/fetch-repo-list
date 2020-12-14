@@ -20,12 +20,12 @@ def main():
     args = parser.parse_args()
 
     g = Github(args.token)
-    if args.org_name:
+    if args.org_name != "None":
         repos = g.get_organization(args.org_name).get_repos()
     else:
         repos = g.get_user().get_repos()
 
-    if args.last_active:
+    if args.last_active != 0:
         repo_filter = partial(time_filters, last_n_day=args.last_active)
         repos = filter(repo_filter, repos)
     
