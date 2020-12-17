@@ -21,7 +21,7 @@ def main():
     args = parser.parse_args()
 
     g = Github(args.token)
-    if args.org_name != "None":
+    if args.org_name:
         repos = g.get_organization(args.org_name).get_repos()
     else:
         repos = g.get_user().get_repos()
