@@ -22,7 +22,7 @@ def main():
 
     g = Github(args.token)
     if args.org_name != "None":
-        print("org mode)
+        print("org mode")
         repos = g.get_organization(args.org_name).get_repos()
     else:
         repos = g.get_user().get_repos()
